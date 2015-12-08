@@ -1,5 +1,6 @@
 import * as constants from '../../common/constants';
 import dispatcher from './dispatcher';
+import controls from './controls';
 
 export function createDefaultAction() {
   return {
@@ -26,16 +27,11 @@ export function connect() {
 export function keydown(keycode) {
   dispatcher.dispatch({
     ...createDefaultAction(),
-    type: constants.KEYDOWN,
-    keycode
+    type: controls[keycode]
   });
 }
 
 export function keyup(keycode) {
-  dispatcher.dispatch({
-    ...createDefaultAction(),
-    type: constants.KEYUP,
-    keyup
-  });
+  // for now we don't care about keyup events
 }
 

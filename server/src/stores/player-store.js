@@ -17,7 +17,11 @@ export default const PlayerStore = {
       y: 0,
       rotation: 0,
       velocity: 0,
-      health: 10
+      health: 10,
+      viewport: {
+        width: 0,
+        height: 0
+      }
     };
   },
   registerPlayer(player) {
@@ -36,6 +40,11 @@ dispatcher.register(action => {
   const player = players.get(id);
 
   switch(action.type) {
+    case constants.CLIENT_RESIZE:
+      player.viewport = {
+        width: action.width,
+        height: action.height
+      };
     case constants.PLAYER_ACCELERATE:
       player.velocity += (0.1 * action.direction);
     case constants.PLAYER_ROTATE:
